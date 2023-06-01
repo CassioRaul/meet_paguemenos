@@ -17,6 +17,7 @@ class ListPlanning(admin.ModelAdmin):
         'planning_resource',
         'planning_contributor_name',
         'planning_creator',
+        'planning_date',
         )
     
 admin.site.register(Planning, ListPlanning)

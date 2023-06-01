@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class Planning(models.Model):
     
@@ -20,8 +21,8 @@ class Planning(models.Model):
     planning_description = models.CharField('Descrição',max_length=300,blank=False, null=False)
     planning_resource = models.CharField('Recursos', max_length=100, blank=False, null=False)
     planning_contributor_name =  models.CharField('Nome do colaborador', max_length=45,blank=False,null=False)
-    planning_creator = models.CharField("Criador",max_length=50 ,blank=False, null=False)
-
+    planning_creator = models.CharField("Criador",max_length=50, blank=False, null=False)
+    planning_date = models.DateTimeField('Data/Hora', default=timezone.now, blank=True, db_index=True)
 
     def __str__(self):
         return f'{self.planning_title}'
@@ -50,4 +51,4 @@ class DelPlanning(models.Model):
    
 
    def __str__(self):
-       return f'{self.deleteplanning_delete_title}'
+       return f'{self.delplanning_title}'
