@@ -4,11 +4,13 @@ from rest_framework import routers
 from . import views
 from feedback.api import viewsets as feedbackviewsets
 
-route = routers.DefaultRouter()
-route.register(r'', feedbackviewsets.FeedbackViewSet, basename= "feedback")
-route.register(r'', feedbackviewsets.DeleteFeedbackViewSet, basename= "delete_feedback")
+route_feedback = routers.DefaultRouter()
+route_feedback.register(r'', feedbackviewsets.FeedbackViewSet)
+
+route_del_feedback = routers.DefaultRouter()
+route_del_feedback.register(r'', feedbackviewsets.DeleteFeedbackViewSet)
 
 urlpatterns = [
-    path('feedback/', include(route.urls)),
-    path('delete_feedback/', include(route.urls)),
+    path('feedback/', include(route_feedback.urls)),
+    path('delete_feedback/', include(route_del_feedback.urls)),
 ]

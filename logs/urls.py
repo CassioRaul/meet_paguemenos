@@ -4,9 +4,9 @@ from . import views
 from rest_framework import routers
 from .api.viewsets import LogsViewSet
 
-router = routers.DefaultRouter()
-router.register(r'', LogsViewSet)
+route_logs = routers.DefaultRouter()
+route_logs.register(r'', LogsViewSet)
 
 urlpatterns = [
-    path('logs/', include(router.urls)),
+    path('logs/', include(route_logs.urls)),
 ]

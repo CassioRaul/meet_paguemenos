@@ -6,11 +6,13 @@ from rest_framework import routers
 from schedule.api import viewsets as scheduleviewsets
 from schedule.api import viewsets as scheduleseleteserializerssiewset
 
-route = routers.DefaultRouter()
-route.register(r'', scheduleviewsets.ScheduleViewSet)
-route.register(r'', scheduleseleteserializerssiewset.ScheduleDeleteSerializersViewSet)
+route_schedule = routers.DefaultRouter()
+route_schedule.register(r'', scheduleviewsets.ScheduleViewSet)
+
+route_delete_schedule = routers.DefaultRouter()
+route_delete_schedule.register(r'', scheduleseleteserializerssiewset.ScheduleDeleteSerializersViewSet)
 
 urlpatterns = [
-    path('schedule/', include(route.urls)),
-    path('delete_schedule/', include(route.urls)),
+    path('schedule/', include(route_schedule.urls)),
+    path('delete_schedule/', include(route_delete_schedule.urls)),
 ]
