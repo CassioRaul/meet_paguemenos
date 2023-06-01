@@ -9,6 +9,6 @@ route.register(r'', feedbackviewsets.FeedbackViewSet, basename= "feedback")
 route.register(r'', feedbackviewsets.DeleteFeedbackViewSet, basename= "delete_feedback")
 
 urlpatterns = [
-    path('feedback', include(route.urls)),
-    path('delete_feedback', include(route.urls)),
+    path('feedback/', include(route.urls)),
+    path('delete_feedback/', include(route.urls)),
 ]
