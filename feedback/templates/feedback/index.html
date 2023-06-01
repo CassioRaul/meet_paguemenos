@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGENDA CONECT</title>
+</head>
+<body>
+    <h1>FEEDBACK</h1>
+    {% include 'global/partials/_menu.html' %}
+
+    <br>
+    {% for feedback in feedbacks %}
+    <td>Titulo:{{feedback.feedback_title}}</td>
+    <td>Deixe seu feedback: {{feedback.feedback_description}}</td>
+    <td>Info Oculta: {{feedback.feedback_date}}</td>
+
+    {% endfor %}
+
+    <h1>DELETE FEEDBACK</h1>
+    {% for delete_feedback in delete_feedbacks %}
+        IP DA MÁQUINA: {{ delete_feedback.delete_ip }} <br>
+        BROSER: {{ delete_feedback.delete_browser }} <br>
+        DATA DA EXCLUSÃO: {{ delete_feedback.delete_date_time_end }} <br>
+    {% endfor %}
+
+</body>
+</html>

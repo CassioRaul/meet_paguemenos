@@ -1,0 +1,84 @@
+{% load static %}
+{% include 'global/partials/_base.html' %}
+{% include 'global/partials/_header.html' %}
+<body>
+    <div class="text-center">
+        <h1>HOME</h1>       
+        {% comment %} <div class="input-group">
+            <form class="text-center" action="{% url 'cadastro' %}" method="POST">
+                {% csrf_token %}
+                <input class="form-control" type="text" placeholder="Nome" name="name">
+                <br>
+                <input class="form-control" type="email" placeholder="E-mail" name="email">
+                <br>
+                <input class="form-control" type="password" placeholder="Senha" name="password">
+                <br>
+                <select class="btn btn-primary" name="function">
+                    <option value="Gerente">Gerente</option>
+                    <option value="Colaborador" selected>Colaborador</option>
+                </select>
+                <br>
+                <br>
+                <input class="btn btn-primary" type="submit" value="cadastrar">
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <h1>GERENTE</h1>
+        {% for user in usersManag %}
+        <table border="2px" cellPadding="5px" align='center'>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOME</th>
+                    <th>EMAIL</th>
+                    <th>FUNÇÃO</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.function}}</td>
+                    <td>
+                    <a href="{% url 'editar_user_manag' user.id %}">Editar</a>
+                    <a href="{% url 'delete_user_manag' user.id %}">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        {% endfor %}
+    </div>
+    <div class="text-center">
+        <h1>COLABORADOR</h1>
+        {% for user in usersCollab %}
+        <table border="2px" cellPadding="5px" align='center'>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOME</th>
+                    <th>EMAIL</th>
+                    <th>FUNÇÃO</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.function}}</td>
+                    <td>
+                    <a href="{% url 'editar_user_collab' user.id %}">Editar</a>
+                    <a href="{% url 'delete_user_collab' user.id %}">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        {% endfor %}
+    </div> {% endcomment %}
+
+{% include 'global/partials/_footer.html' %}

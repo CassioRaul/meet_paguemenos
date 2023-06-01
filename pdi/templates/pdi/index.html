@@ -1,0 +1,51 @@
+{% load static %}
+{% include 'global/partials/_base.html' %}
+{% include 'global/partials/_header.html' %}
+<body>
+    <h1 class="text-center">PDI</h1>
+
+    <br>
+    <hr>
+    {% for pdi in planning  %}
+    <td>Para: {{pdi.pdi_contributor_name }}</td>
+    <hr>
+    <td>Progresso: {{pdi.pdi_progess}}</td>
+    <hr>
+    <td>Titulo: {{ pdi.pdi_title }}</td>
+    <hr>
+    <td>Meta 1: {{pdi.pdi_goals_1}}</td>
+    <td>STATUS: {{pdi.pdi_status_1 }}</td>
+    <hr> 
+    {% if pdi.pdi_goals_2 == null %}
+        <td>Meta 2: --- </td>
+    {% else %}
+        <td>Meta 2: {{ pdi.pdi_goals_2 }}</td>
+    {% endif %}
+    {% if pdi.pdi_status_2 == null %}    
+        <td>STATUS: --- </td>
+    {% else %}
+        <td>STATUS: {{pdi.pdi_status_2}}</td>
+    {% endif %}   
+    <hr>
+    {% if pdi.pdi_goals_3  == null %}
+        <td>Meta 3: --- </td>
+    {% else %}
+        <td>Meta 3: {{ pdi.pdi_goals_3 }}</td>
+    {% endif %}    
+    {% if pdi.pdi_status_3 == null %}    
+        <td>STATUS: --- </td>
+    {% else %}
+        <td>STATUS: {{pdi.pdi_status_3}}</td>
+    {% endif %}    
+    <hr>
+    <td>Prazo: {{ pdi.pdi_final_date }}</td>
+    <hr>
+    <td>Descrição: {{ pdi.pdi_description }}</td>
+    <hr>
+    <td>Recursos: {{ pdi.pdi_resource }}</td>
+    <hr>
+    <td>Criado por:  {{ pdi.pdi_creator }}</td>
+    {% endfor %}
+    <br>
+
+{% include 'global/partials/_footer.html' %}

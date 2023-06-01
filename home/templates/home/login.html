@@ -1,0 +1,16 @@
+{% load static %}
+{% include 'global/partials/_base.html' %}
+{% include 'global/partials/_header.html' %}
+<div class="text-center">
+    <h1>LOGIN</h1>
+    <div class="input-group">
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <input class="form-control" type="email" placeholder="E-mail" name="email">
+            <br>
+            <input class="form-control" type="password" placeholder="Senha" name="password">
+            <br>
+            <input class="btn btn-primary" type="submit" value="login">
+        </form>
+    </div>
+</div>

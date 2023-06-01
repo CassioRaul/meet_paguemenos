@@ -1,0 +1,17 @@
+{% load static %}
+{% include 'global/partials/_base.html' %}
+{% include 'global/partials/_header.html' %}
+<body>
+    <div class="text-center">
+        <form action="{% url 'update_user_manag' users.id %}" method="POST">
+            {% csrf_token %}
+            NOME:<br>
+            <input type="text" name="name" value="{{users.name}}"/><br>
+            E-MAIL:<br>
+            <input type="text" name="email" value="{{users.email}}"/><br>
+            FUNÇÃO:<br>
+            <input type="text" name="function" value="{{users.function}}"/><br>
+            <button class="btn btn-primary" type="submit" value={% url 'home' %}>SALVAR</button>
+        </form>
+    </div>
+{% include 'global/partials/_footer.html' %}
