@@ -8,6 +8,6 @@ class ManagerSerializer(serializers.ModelSerializer):
 
 class CollaboratorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.UserManager
+        model = models.UserCollaborator
         fields = '__all__' # ['campo']
 
