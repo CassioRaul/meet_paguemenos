@@ -3,7 +3,7 @@ from .models import Feedback, DeleteFeedback
 
 class ListFeedback(admin.ModelAdmin):
 
-    list_display = ('feedback_iduser', 'feedback_title', 'feedback_author', 'feedback_receiver', 'feedback_date', 'feedback_desc', 'feedback_evaluate', )
+    list_display = ('schedule_id','feedback_iduser', 'feedback_title', 'feedback_author', 'feedback_receiver', 'feedback_date', 'feedback_desc', 'feedback_evaluate', )
 
 admin.site.register(Feedback, ListFeedback)
 

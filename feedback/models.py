@@ -1,6 +1,10 @@
+from schedule.models import Schedule
 from django.db import models
 from django.utils import timezone
+
+
 class Feedback(models.Model):
+    schedule_id = models.ForeignKey(Schedule,on_delete=models.CASCADE)
     feedback_iduser= models.BigAutoField(primary_key=True)
     feedback_title = models.CharField('TITULO', max_length=50)
     feedback_author=models.CharField('AUTOR', max_length=50)
