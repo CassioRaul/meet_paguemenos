@@ -3,6 +3,7 @@ from .models import Planning, DelPlanning
 
 class ListPlanning(admin.ModelAdmin):
     list_display = (
+        'schedule_id',
         'planning_id',
         'planning_title',
         'planning_goals_1',

@@ -1,4 +1,5 @@
 from django.db import models
+from schedule.models import Schedule
 from django.utils import timezone
 
 class Planning(models.Model):
@@ -8,6 +9,7 @@ class Planning(models.Model):
         ('2','Em atraso'),
         ('3','Em andamento'),
     )
+    schedule_id = models.ForeignKey(Schedule, on_delete=models.CASCADE)
     planning_id =  models.BigAutoField('Id', primary_key=True)
     planning_title = models.CharField('Titulo', max_length=50, blank=False, null=False)
     planning_goals_1 = models.CharField('Meta 1', max_length=100, blank=False, null=True)
