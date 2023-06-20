@@ -1,12 +1,23 @@
 from rest_framework import serializers
 from feedback import models
 
-class FeedbackSerializer(serializers.ModelSerializer):
+class FeedbackGSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.Feedback
+        model = models.FeedbackG
         fields = '__all__' #campo
-        
-# class DeleteFeedbackSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = models.DeleteFeedback
-#         fields = '__all__' #campo
+
+class DeleteFeedbackGSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.DeleteFeedbackG
+        fields = '__all__' #campo
+
+
+class FeedbackCSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.FeedbackC
+        fields = '__all__' #campo
+
+class DeleteFeedbackCSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.DeleteFeedbackC
+        fields = '__all__' #campo
