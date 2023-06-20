@@ -1,11 +1,18 @@
 from django.shortcuts import render
-from .models import Feedback, DeleteFeedback
+from .models import FeedbackG, DeleteFeedbackG,FeedbackC, DeleteFeedbackC
 
 def feedback(request):
-    feedback = Feedback.objects.all()
-    delete_feedback = DeleteFeedback.objects.all()
+    feedbackG = FeedbackG.objects.all()
+    delete_feedbackG = DeleteFeedbackG.objects.all()
+    feedbackC = FeedbackC.objects.all()
+    delete_feedbackC = DeleteFeedbackC.objects.all()
+
+
     context={
-        'feedbacks': feedback,
-        'delete_feedbacks': delete_feedback,
+        'feedbacksg': feedbackG,
+        'delete_feedbacksg': delete_feedbackG,
+        'feedbacksc': feedbackC,
+        'delete_feedbacksc': delete_feedbackC,
+
     }
     return render(request,"index.html",context)
