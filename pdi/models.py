@@ -10,12 +10,12 @@ class Planning(models.Model):
     )
     planning_id =  models.BigAutoField('ID', primary_key=True)
     planning_title = models.CharField('Título', max_length=50, blank=False, null=True) #,blank=False,null=False
-    planning_goals_1 = models.CharField('Meta 1', max_length=200, blank=False, null=True) # 
-    planning_status_1 = models.CharField('Status 1', max_length=20, blank=False, null=True) # ,choices=STATUS_CHOICES,null=False,blank=False
-    planning_goals_2 = models.CharField('Meta 2', max_length=200, blank=False, null=True) # ,blank=True,null=True
-    planning_status_2 = models.CharField('Status 2', max_length=20, blank=False, null=True) # ,choices=STATUS_CHOICES,null=False,blank=True
-    planning_goals_3 = models.CharField('Meta 3', max_length=200, blank=False, null=True) # ,blank=True,null=True
-    planning_status_3 = models.CharField('Status 3', max_length=20, blank=False, null=True) #,choices=STATUS_CHOICES,null=False,blank=True
+    planning_goals = models.CharField('Meta 1', max_length=200, blank=False, null=True) # 
+    planning_status = models.CharField('Status 1', max_length=20, blank=False, null=True) # ,choices=STATUS_CHOICES,null=False,blank=False
+    # planning_goals_2 = models.CharField('Meta 2', max_length=200, blank=False, null=True) # ,blank=True,null=True
+    # planning_status_2 = models.CharField('Status 2', max_length=20, blank=False, null=True) # ,choices=STATUS_CHOICES,null=False,blank=True
+    # planning_goals_3 = models.CharField('Meta 3', max_length=200, blank=False, null=True) # ,blank=True,null=True
+    # planning_status_3 = models.CharField('Status 3', max_length=20, blank=False, null=True) #,choices=STATUS_CHOICES,null=False,blank=True
     planning_progess = models.CharField('Progresso', max_length=1, blank=False, null=True)# default=0,blank=True,null=True
     planning_final_date = models.CharField('Data final', blank=False, null=True) #, blank=False, null=False
     planning_description = models.CharField('Descrição', max_length=300, blank=False, null=True) #,blank=False, null=False
