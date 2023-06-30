@@ -23,17 +23,18 @@ class Schedule(models.Model):
     schedule_duration = models.CharField('Duração', max_length=8)
     status = models.BooleanField("STATUS", default=False)
 # choices=DURATION_CHOICES
+
     def __str__(self):
         return f'{self.schedule_topic}'
     
 class DelSchedule(models.Model):
 
     delschedule_id = models.CharField('Id', primary_key=True, max_length=50)
-    delschedule_topic = models.CharField('Tópico', max_length=30,blank=False,null=False)
+    delschedule_topic = models.CharField('Tópico', max_length=45,blank=False,null=False)
     delschedule_date_hour = models.DateTimeField('Data Hora inicial', blank=False, null=False)
     delschedule_name_creator = models.CharField('Nome do criador', max_length=100, blank=False, null=False)
     delschedule_name_receiver = models.CharField('Nome do recebidor', max_length=100, blank=False, null=False)
-    # delschedule_meet_link = models.URLField('Link de reunião',max_length=150 ,blank=False, null=False)
+    delschedule_meet_link = models.URLField('Link de reunião',max_length=150 ,blank=False, null=False)
     delschedule_meet_location = models.CharField('Local da Reunião',max_length=50 ,blank=False, null=False)
     delschedule_description =  models.CharField('Descrição', max_length=100,blank=True,null=True)
     delschedule_duration = models.CharField('Duração', default='30:00',max_length=8, choices=Schedule.DURATION_CHOICES, blank=False, null=False)

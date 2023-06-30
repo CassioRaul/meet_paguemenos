@@ -10,7 +10,7 @@ class Planning(models.Model):
     )
     planning_id =  models.BigAutoField('ID', primary_key=True)
     planning_title = models.CharField('Título', max_length=50, blank=False, null=True) #,blank=False,null=False
-    planning_goals = models.CharField('Meta 1', max_length=200, blank=False, null=True) # 
+    planning_goals = models.CharField('Meta 1', max_length=150, blank=False, null=True) # 
     planning_status = models.CharField('Status 1', max_length=20, blank=False, null=True) # ,choices=STATUS_CHOICES,null=False,blank=False
     # planning_goals_2 = models.CharField('Meta 2', max_length=200, blank=False, null=True) # ,blank=True,null=True
     # planning_status_2 = models.CharField('Status 2', max_length=20, blank=False, null=True) # ,choices=STATUS_CHOICES,null=False,blank=True
