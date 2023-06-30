@@ -21,6 +21,7 @@ class Schedule(models.Model):
     schedule_meet_location = models.CharField('Local da Reunião', max_length=100)
     schedule_description =  models.CharField('Descrição', max_length=100)
     schedule_duration = models.CharField('Duração', max_length=8)
+    status = models.BooleanField("STATUS", default=False)
 # choices=DURATION_CHOICES
     def __str__(self):
         return f'{self.schedule_topic}'
