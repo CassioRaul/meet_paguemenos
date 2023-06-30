@@ -17,12 +17,10 @@ class Schedule(models.Model):
     schedule_date_hour = models.CharField('Data Hora inicial')
     schedule_name_creator = models.CharField('Nome do criador', max_length=100)
     schedule_name_receiver = models.CharField('Nome do recebidor', max_length=100)
-    # schedule_meet_link = models.URLField('Link de reunião', max_length=255)
     schedule_meet_location = models.CharField('Local da Reunião', max_length=100)
     schedule_description =  models.CharField('Descrição', max_length=100)
     schedule_duration = models.CharField('Duração', max_length=8)
-    status = models.BooleanField("STATUS", default=False)
-# choices=DURATION_CHOICES
+    schedule_status = models.BooleanField("STATUS", default=False)
 
     def __str__(self):
         return f'{self.schedule_topic}'

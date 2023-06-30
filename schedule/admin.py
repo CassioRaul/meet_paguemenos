@@ -9,7 +9,7 @@ class ListSchedule(admin.ModelAdmin):
         'schedule_name_creator',
         'schedule_description', 
         'schedule_duration',
-        'status',
+        'schedule_status',
         )
 
 class ListDelSchedule(admin.ModelAdmin):
