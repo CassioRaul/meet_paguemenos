@@ -6,7 +6,3 @@ class PlanningSerializers(serializers.ModelSerializer):
         model = models.Planning
         fields = '__all__' # ['campo']
     
-class PlanningDelSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = models.DelPlanning
-        fields = '__all__'

@@ -9,20 +9,3 @@ class FeedbackViewSet(viewsets.ModelViewSet):
     # permission_classes= [permissions.IsAuthenticated]
     # authentication_classes =[authentication.BaseAuthentication]
 
-# class DeleteFeedbackGViewSet(viewsets.ModelViewSet):
-#     queryset= models.DeleteFeedbackG.objects.all()
-#     serializer_class = DeleteFeedbackGSerializer
-    # permission_classes= [permissions.IsAuthenticated]
-    # authentication_classes =[authentication.BaseAuthentication]
-    
-# class FeedbackCViewSet(viewsets.ModelViewSet):
-#     queryset= models.FeedbackC.objects.all()
-#     serializer_class = FeedbackCSerializer
-    # permission_classes= [permissions.IsAuthenticated]
-    # authentication_classes =[authentication.BaseAuthentication]
-
-# class DeleteFeedbackCViewSet(viewsets.ModelViewSet):
-#     queryset= models.DeleteFeedbackC.objects.all()
-#     serializer_class = DeleteFeedbackCSerializer
-    # permission_classes= [permissions.IsAuthenticated]
-    # authentication_classes =[authentication.BaseAuthentication]

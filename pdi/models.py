@@ -1,52 +1,39 @@
 from django.db import models
-from django.utils import timezone
+from home.models import UserManager, UserCollaborator
+from datetime import datetime
 
 class Planning(models.Model):
-    
-    STATUS_CHOICES =(
-        ('1','Concluido'),
-        ('2','Em atraso'),
-        ('3','Em andamento'),
-    )
+    def data():
+        data = datetime.now()
+        dia = data.day
+        mes = data.month
+        ano = data.year
+        return f'{dia}/{mes}/{ano}'
+
+    def time():
+        time = datetime.now()
+        hora = time.hour
+        minutos = time.minute
+        return f'{hora}:{minutos}'
+
     planning_id =  models.BigAutoField('ID', primary_key=True)
-    planning_title = models.CharField('Título', max_length=50, blank=False, null=True) #,blank=False,null=False
-    planning_goals = models.CharField('Meta 1', max_length=150, blank=False, null=True) # 
-    planning_status = models.CharField('Status 1', max_length=20, blank=False, null=True) # ,choices=STATUS_CHOICES,null=False,blank=False
-    # planning_goals_2 = models.CharField('Meta 2', max_length=200, blank=False, null=True) # ,blank=True,null=True
-    # planning_status_2 = models.CharField('Status 2', max_length=20, blank=False, null=True) # ,choices=STATUS_CHOICES,null=False,blank=True
-    # planning_goals_3 = models.CharField('Meta 3', max_length=200, blank=False, null=True) # ,blank=True,null=True
-    # planning_status_3 = models.CharField('Status 3', max_length=20, blank=False, null=True) #,choices=STATUS_CHOICES,null=False,blank=True
-    planning_progess = models.CharField('Progresso', max_length=1, blank=False, null=True)# default=0,blank=True,null=True
-    planning_final_date = models.CharField('Data final', blank=False, null=True) #, blank=False, null=False
-    planning_description = models.CharField('Descrição', max_length=300, blank=False, null=True) #,blank=False, null=False
-    planning_resource = models.CharField('Recursos', max_length=100, blank=False, null=True)
-    planning_contributor_name =  models.CharField('Nome do colaborador', max_length=45, blank=False, null=True)
-    planning_creator = models.CharField("Criador", max_length=50, blank=False, null=True)
-    planning_date = models.CharField('Data/Hora', blank=False, null=True) #default=timezone.now, blank=True, db_index=True
+    planning_manager_id = models.ForeignKey(UserManager, on_delete=models.CASCADE)
+    planning_collaborator_id = models.ForeignKey(UserCollaborator, on_delete=models.CASCADE)
+    planning_name_manager = models.CharField('Nome do Gerente', max_length=50)
+    planning_name_collaborator =  models.CharField('Nome do Colaborador', max_length=50)
+    planning_title = models.CharField('Título', max_length=100)
+    planning_goals = models.CharField('Meta', max_length=200)
+    planning_status = models.CharField('Status', max_length=100)
+    planning_progess = models.CharField('Progresso', max_length=100)
+    planning_description = models.CharField('Descrição', max_length=300)
+    planning_resource = models.CharField('Recursos', max_length=100)    
+    planning_date = models.CharField('Data')
+    planning_hour = models.CharField('Hora')
+    # planning_date = models.CharField('Data', default=data)
+    # planning_hour = models.CharField('Hora', default=time)
+    planning_final_date = models.CharField('Data final')
+    planning_final_hour = models.CharField('Hora final')
+    #default=timezone.now, blank=True, db_index=True
 
     def __str__(self):
         return f'{self.planning_title}'
-class DelPlanning(models.Model):
-
-   delplanning_id = models.BigAutoField('id',primary_key=True)
-   delplanning_id_origin = models.CharField('Id', max_length=10)
-   delplanning_title = models.CharField('Titulo',max_length=50,blank=False,null=False)
-   delplanning_goals_1 = models.CharField('Meta 1',max_length=200,blank=False,null=True)
-   delplanning_status_1 = models.CharField('status',max_length=1,choices=Planning.STATUS_CHOICES,null=False,blank=False)
-   delplanning_goals_2 = models.CharField('Meta 2',max_length=200,blank=True,null=True)
-   delplanning_status_2 = models.CharField('status',max_length=1,choices=Planning.STATUS_CHOICES,null=False,blank=False)
-   delplanning_goals_3 = models.CharField('Meta 3',max_length=200,blank=True,null=True)
-   delplanning_status_3 = models.CharField('status',max_length=1,choices=Planning.STATUS_CHOICES,null=False,blank=False)
-   delplanning_progess = models.IntegerField('Progresso',default=0,blank=True,null=True)
-   delplanning_final_date_origin = models.DateField('Data final', blank=False, null=False)
-   delplanning_description =  models.CharField('Descrição',max_length=300,blank=False, null=False)
-   delplanning_resource =  models.CharField('Recursos', max_length=100, blank=False, null=False)
-   delplanning_contributor_name = models.CharField('Nome do colaborador', max_length=45,blank=False,null=False)
-   delplanning_creator = models.CharField("Criador",max_length=50 ,blank=False, null=False)
-   delplanning_date = models.DateField('Data de deleçao', blank=False, null=False)
-   delplanning_browser = models.CharField('Navegador',max_length=50,blank=False,null=False)
-   delplanning_ip = models.CharField('Ip da máquina',max_length=50,blank=False,null=False)
-   
-
-   def __str__(self):
-       return f'{self.delplanning_title}'

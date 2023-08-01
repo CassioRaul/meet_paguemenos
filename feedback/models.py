@@ -1,87 +1,33 @@
 from django.db import models
-from django.utils import timezone
+from home.models import UserManager, UserCollaborator
 from schedule.models import Schedule
+from datetime import datetime
 
 class Feedback(models.Model):
-    feedback_iduser = models.BigAutoField(primary_key=True)
+    def data():
+        data = datetime.now()
+        dia = data.day
+        mes = data.month
+        ano = data.year
+        return f'{dia}/{mes}/{ano}'
+
+    def time():
+        time = datetime.now()
+        hora = time.hour
+        minutos = time.minute
+        return f'{hora}:{minutos}'
+    
+    feedback_id = models.BigAutoField(primary_key=True)
     feedback_idschedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)
-    feedback_title = models.CharField('TITULO', max_length=50)
+    feedback_manager_id = models.ForeignKey(UserManager, on_delete=models.CASCADE)
+    feedback_collaborator_id = models.ForeignKey(UserCollaborator, on_delete=models.CASCADE)
     feedback_manage = models.CharField('GERENTE', max_length=50)
     feedback_collaborator = models.CharField('COLABORADOR', max_length=50)
-    feedback_date = models.DateTimeField('DATA/HORA', default=timezone.now, blank=True, db_index=True)
+    feedback_title = models.CharField('TÍTULO', max_length=50)
+    feedback_date = models.CharField('DATA')
+    feedback_hour = models.CharField('HORA')
     feedback_note = models.CharField('ANOTAÇÃO', max_length=350)
-    feedback_evaluate = models.CharField('AVALIAÇÃO', max_length=1) #default=0, blank= False
+    feedback_evaluate = models.CharField('AVALIAÇÃO', max_length=50) #default=0, blank= False
         
     def __str__(self):
         return f'{self.feedback_title}'
-
-# class FeedbackG(models.Model):
-#     feedback_iduser= models.BigAutoField(primary_key=True)
-#     feedback_title = models.CharField('TITULO', max_length=50)
-#     feedback_manage=models.CharField('GERENTE', max_length=50)
-#     feedback_collaborator=models.CharField('COLABORADOR', max_length=50)
-#     feedback_date = models.DateTimeField('DATA/HORA', default=timezone.now, blank=True, db_index=True)
-#     feedback_quest1= models.CharField('Quais são as habilidades de seu liderado?', max_length=100)
-#     feedback_quest2 = models.CharField('Qual seu diferencial?', max_length=100)
-#     feedback_quest3= models.CharField('O que impede seu desenvolvimento?', max_length= 100)
-#     feedback_quest4 = models.CharField('O que pode melhorar?', max_length=100)
-#     feedback_quest5 = models.CharField('Quais mudanças pode melhorar seu desempenho?', max_length=100)
-#     feedback_quest6 = models.CharField('O que pode atrapalhar seu desempenho?', max_length=100)
-#     feedback_note = models.CharField('ANOTAÇÃO', max_length=350)
-
-#     feedback_evaluate = models.IntegerField('AVALIAÇÃO', default=0, blank= False)
-        
-#     def __str__(self):
-#         return f'{self.feedback_title}'
-    
-# class DeleteFeedbackG(models.Model):
-#     delete_feedback_id= models.BigAutoField('ID DE EXCLUSAO',primary_key=True)
-#     delete_feedback_date_time_end = models.DateTimeField('DATA DA EXCLUSÃO', default=timezone.now, blank=True, db_index=True)
-#     delete_feedback_ipadress=models.CharField('IP',max_length=20)
-#     delete_feedback_browser=models.CharField('NAVEGADOR',max_length=20)
-#     delete_feedback_iduser= models.CharField('ID DO FEEBACK', max_length=50)
-#     delete_feedback_manage=models.CharField('GERENTE', max_length=50)
-#     delete_feedback_collaborator=models.CharField('COLABORADOR', max_length=50)
-#     delete_feedback_title = models.CharField('TITULO', max_length=50)
-#     delete_feedback_quest1= models.CharField('Quais são as habilidades de seu liderado?', max_length=100)
-#     delete_feedback_quest2 = models.CharField('Qual seu diferencial?', max_length=100)
-#     delete_feedback_quest3= models.CharField('O que impede seu desenvolvimento?', max_length= 100)
-#     delete_feedback_quest4 = models.CharField('O que pode melhorar?', max_length=100)
-#     delete_feedback_quest5 = models.CharField('Quais mudanças pode melhorar seu desempenho?',max_length=100)
-#     delete_feedback_quest6 = models.CharField('O que pode atrapalhar seu desempenho?',max_length=100)
-#     delete_feedback_note= models.CharField('ANOTAÇÃO', max_length=350)
-#     delete_feedback_date_time = models.DateTimeField('DATA/HORA', blank=True, db_index=True)
-#     delete_feedback_evaluate = models.CharField('ESTRELAS', default=0, blank= False)
-     
-#     def __str__(self):
-#         return f'{self.delete_feedback_title}'
-
-# class FeedbackC(models.Model):
-#     feedback_iduser= models.BigAutoField(primary_key=True)
-#     feedback_title = models.CharField('TITULO', max_length=50)
-#     feedback_manage=models.CharField('GERENTE', max_length=50)
-#     feedback_collaborator=models.CharField('COLABORADOR', max_length=50)
-#     feedback_date = models.DateTimeField('DATA/HORA', default=timezone.now, blank=True, db_index=True)
-#     feedback_quest1=models.CharField('Sobre o tempo e o Horario da Reuniao, avalie', max_length=100)
-#     feedback_quest2=models.CharField('sobre o conteúdo, pauta abordada avalie', max_length=100)
-#     feedback_quest3=models.CharField('deixe aqui sua sugestão ou elogio para melhorarmos nas próximas reuniões', max_length=100)
-#     feedback_note= models.CharField('ANOTAÇÃO', max_length=350)
-#     feedback_evaluate = models.IntegerField('AVALIAÇÃO', default=0, blank= False)
-
-# class DeleteFeedbackC(models.Model):
-#     delete_feedback_id= models.BigAutoField('ID DE EXCLUSAO',primary_key=True)
-#     delete_feedback_date_time_end = models.DateTimeField('DATA DA EXCLUSÃO', default=timezone.now, blank=True, db_index=True)
-#     delete_feedback_ipadress=models.CharField('IP',max_length=20)
-#     delete_feedback_browser=models.CharField('NAVEGADOR',max_length=20)
-#     delete_feedback_iduser= models.CharField('ID DO FEEBACK', max_length=50)
-#     delete_feedback_manage=models.CharField('GERENTE', max_length=50)
-#     delete_feedback_collaborator=models.CharField('COLABORADOR', max_length=50)
-#     delete_feedback_title = models.CharField('TITULO', max_length=50)
-#     delete_feedback_quest1= models.CharField('Sobre o tempo e o Horario da Reuniao, avalie', max_length=100)
-#     delete_feedback_quest2 = models.CharField('Sobre o conteúdo, pauta abordada avalie', max_length=100)
-#     delete_feedback_quest3= models.CharField('deixe aqui sua sugestão ou elogio para melhorarmos nas próximas reuniões', max_length= 100)
-#     delete_feedback_note= models.CharField('ANOTAÇÃO', max_length=350)
-#     delete_feedback_date_time = models.DateTimeField('DATA/HORA', blank=True, db_index=True)
-#     delete_feedback_evaluate = models.IntegerField('ESTRELAS', default=0, blank= False)
-    
-

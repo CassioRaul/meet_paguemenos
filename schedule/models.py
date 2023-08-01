@@ -1,41 +1,22 @@
 from django.db import models
+from home.models import UserManager, UserCollaborator
 from datetime import datetime
 
 class Schedule(models.Model):
 
-    DURATION_CHOICES =(
-        ('30:00','30:00'),
-        ('01:00:00','1:00:00'),
-        ('01:30:00','1:30:00'),
-        ('02:00:00','2:00:00'),
-        ('02:30:00','2:30:00'),
-        ('03:00:00','3:00:00'),
-    )    
-
     schedule_id = models.BigAutoField('Id', primary_key=True)
-    schedule_topic = models.CharField('Título', max_length=30)
-    schedule_date_hour = models.CharField('Data Hora inicial')
-    schedule_name_creator = models.CharField('Nome do criador', max_length=100)
-    schedule_name_receiver = models.CharField('Nome do recebidor', max_length=100)
+    schedule_manager_id = models.ForeignKey(UserManager, on_delete=models.CASCADE)
+    schedule_collaborator_id = models.ForeignKey(UserCollaborator, on_delete=models.CASCADE)
+    schedule_name_manager = models.CharField('Nome do Gerente', max_length=100)
+    schedule_name_collaborator = models.CharField('Nome do Colaborador', max_length=100)
+    schedule_topic = models.CharField('Título', max_length=50)
+    schedule_date = models.CharField('Data')
+    schedule_hour = models.CharField('Hora')
     schedule_meet_location = models.CharField('Local da Reunião', max_length=100)
-    schedule_description =  models.CharField('Descrição', max_length=100)
-    schedule_duration = models.CharField('Duração', max_length=8)
+    schedule_description =  models.CharField('Descrição', max_length=350)
+    schedule_duration = models.CharField('Duração', max_length=2)
     schedule_status = models.BooleanField("STATUS", default=False)
 
     def __str__(self):
-        return f'{self.schedule_topic}'
+        return str(self.schedule_id)
     
-class DelSchedule(models.Model):
-
-    delschedule_id = models.CharField('Id', primary_key=True, max_length=50)
-    delschedule_topic = models.CharField('Tópico', max_length=45,blank=False,null=False)
-    delschedule_date_hour = models.DateTimeField('Data Hora inicial', blank=False, null=False)
-    delschedule_name_creator = models.CharField('Nome do criador', max_length=100, blank=False, null=False)
-    delschedule_name_receiver = models.CharField('Nome do recebidor', max_length=100, blank=False, null=False)
-    delschedule_meet_link = models.URLField('Link de reunião',max_length=150 ,blank=False, null=False)
-    delschedule_meet_location = models.CharField('Local da Reunião',max_length=50 ,blank=False, null=False)
-    delschedule_description =  models.CharField('Descrição', max_length=100,blank=True,null=True)
-    delschedule_duration = models.CharField('Duração', default='30:00',max_length=8, choices=Schedule.DURATION_CHOICES, blank=False, null=False)
-    delschedule_dt_now = models.DateTimeField('Data e hora atuais', default=datetime.now())
-    delschedule_ip = models.CharField('Ip',max_length=50)
-    delschedule_browser = models.CharField('Browser', max_length=100)
