@@ -3,7 +3,12 @@ from home.models import UserManager, UserCollaborator
 from datetime import datetime
 
 class Schedule(models.Model):
-
+    STATUS_CHOICES = (
+        (0, "EM ANDAMENTO"),
+        (1, "NÃO FINALIZADA"),
+        (2, "FINALIZADA")
+    )
+    
     schedule_id = models.BigAutoField('Id', primary_key=True)
     schedule_manager_id = models.ForeignKey(UserManager, on_delete=models.CASCADE)
     schedule_collaborator_id = models.ForeignKey(UserCollaborator, on_delete=models.CASCADE)
@@ -15,7 +20,7 @@ class Schedule(models.Model):
     schedule_meet_location = models.CharField('Local da Reunião', max_length=100)
     schedule_description =  models.CharField('Descrição', max_length=350)
     schedule_duration = models.CharField('Duração', max_length=2)
-    schedule_status = models.BooleanField("STATUS", default=False)
+    schedule_status = models.IntegerField('Status', choices=STATUS_CHOICES)
 
     def __str__(self):
         return str(self.schedule_id)

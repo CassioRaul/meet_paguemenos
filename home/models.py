@@ -9,10 +9,14 @@ class UserManager(models.Model):
         token = strings + number
         return (''.join(random.SystemRandom().choices(token, k=12)))
     
+    def idGerente():
+        number = "0123456789"
+        return (''.join(random.SystemRandom().choices(number, k=4)))
+
     def upload_image(instance, filename):
         return f'{instance.manager_id}-{filename}'
 
-    manager_id = models.BigAutoField("ID", primary_key=True)
+    manager_id = models.BigAutoField("ID", default=idGerente, primary_key=True)
     manager_name = models.CharField("NOME", max_length=50)
     manager_email = models.EmailField("E-MAIL", max_length=254)
     manager_function = models.CharField("FUNÇÃO", max_length=255)
@@ -30,10 +34,14 @@ class UserCollaborator(models.Model):
         token = strings + number
         return (''.join(random.SystemRandom().choices(token, k=12)))
     
+    def idColaborador():
+        number = "0123456789"
+        return (''.join(random.SystemRandom().choices(number, k=4)))
+    
     def upload_image(instance, filename):
         return f'{instance.collaborator_id}-{filename}'
     
-    collaborator_id = models.BigAutoField("ID",primary_key=True)
+    collaborator_id = models.BigAutoField("ID", default=idColaborador, primary_key=True)
     collaborator_name = models.CharField("NOME", max_length=50)
     collaborator_email = models.EmailField("E-MAIL", max_length=255)
     collaborator_function = models.CharField("FUNÇÃO", max_length=255)

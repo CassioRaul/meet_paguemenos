@@ -17,7 +17,7 @@ class Feedback(models.Model):
         minutos = time.minute
         return f'{hora}:{minutos}'
     
-    feedback_id = models.BigAutoField(primary_key=True)
+    feedback_id = models.BigAutoField("ID", primary_key=True)
     feedback_idschedule = models.ForeignKey(Schedule, on_delete=models.CASCADE)
     feedback_manager_id = models.ForeignKey(UserManager, on_delete=models.CASCADE)
     feedback_collaborator_id = models.ForeignKey(UserCollaborator, on_delete=models.CASCADE)

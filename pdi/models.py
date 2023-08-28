@@ -23,17 +23,14 @@ class Planning(models.Model):
     planning_name_collaborator =  models.CharField('Nome do Colaborador', max_length=50)
     planning_title = models.CharField('Título', max_length=100)
     planning_goals = models.CharField('Meta', max_length=200)
-    planning_status = models.CharField('Status', max_length=100)
-    planning_progess = models.CharField('Progresso', max_length=100)
+    planning_status = models.CharField('Status', default='EM ANDAMENTO', max_length=100)
+    planning_progess = models.IntegerField('Progresso')
     planning_description = models.CharField('Descrição', max_length=300)
     planning_resource = models.CharField('Recursos', max_length=100)    
-    planning_date = models.CharField('Data')
-    planning_hour = models.CharField('Hora')
-    # planning_date = models.CharField('Data', default=data)
-    # planning_hour = models.CharField('Hora', default=time)
+    planning_date = models.CharField('Data', default=data)
+    planning_hour = models.CharField('Hora', default=time)
     planning_final_date = models.CharField('Data final')
     planning_final_hour = models.CharField('Hora final')
-    #default=timezone.now, blank=True, db_index=True
 
     def __str__(self):
         return f'{self.planning_title}'
