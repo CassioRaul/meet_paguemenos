@@ -24,10 +24,10 @@ class Feedback(models.Model):
     feedback_manage = models.CharField('GERENTE', max_length=50)
     feedback_collaborator = models.CharField('COLABORADOR', max_length=50)
     feedback_title = models.CharField('TÍTULO', max_length=50)
-    feedback_date = models.CharField('DATA')
-    feedback_hour = models.CharField('HORA')
+    feedback_date = models.CharField('DATA', default=data)
+    feedback_hour = models.CharField('HORA',default=time)
     feedback_note = models.CharField('ANOTAÇÃO', max_length=350)
-    feedback_evaluate = models.CharField('AVALIAÇÃO', max_length=50) #default=0, blank= False
+    feedback_evaluate = models.CharField('AVALIAÇÃO', max_length=50) 
         
     def __str__(self):
         return f'{self.feedback_title}'
